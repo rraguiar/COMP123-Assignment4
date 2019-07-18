@@ -13,9 +13,9 @@ namespace COMP123_Assign4_BMICalculator
     public partial class BMICalculatorForm : Form
     {
         //Class attributes
-        public float HeightInMeters { get; set; }
-        public float WeightInKilograms { get; set; }
-        public string resultLabelOutput { get; set; }
+        public double HeightInputValue { get; set; }
+        public double WeightInputValue { get; set; }
+        public double BMIResult { get; set; }
 
         public BMICalculatorForm()
         {
@@ -138,42 +138,36 @@ namespace COMP123_Assign4_BMICalculator
         }
 
         /// <summary>
-        /// This method calculates the BMI when Calculate buttons are clicked
+        /// This method handles the event when the Calculate Button is clicked.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void CalculateBtn_Click(object sender, EventArgs e)
         {
-            if (MetricBtn.Checked)
-            {
                 CalculateBMI();
-            }
-            else if (ImperialBtn.Checked)
-            {
-                ConvertToMetric();
-                CalculateBMI();
-            }
         }
 
         /// <summary>
-        /// This method performs the BMI calculation in metric system
+        /// This method performs the BMI calculation
         /// </summary>
         private void CalculateBMI()
         {
-            this.HeightInMeters = float.Parse(HeightTxtBox.Text);
-            this.WeightInKilograms = float.Parse(WeightTxtBox.Text);
-            var BMIResult = this.WeightInKilograms / (Math.Pow(this.HeightInMeters, 2));
-            ResultLbl.Text = BMIResult.ToString();
-        }
-
-        private void ConvertToMetric()
-        {
-            const float footToMetersConvertRatio = 3.281F;
-            const float poundsToKilogramsConvertRatio = 2.205F;
-            float HeightInFoot = float.Parse(HeightTxtBox.Text);
-            float WeightInPounds = float.Parse(WeightTxtBox.Text);
-            this.HeightInMeters = HeightInFoot/footToMetersConvertRatio;
-            this.WeightInKilograms = WeightInPounds / poundsToKilogramsConvertRatio;
+            this.HeightInputValue = double.Parse(HeightTxtBox.Text);
+            this.WeightInputValue = double.Parse(WeightTxtBox.Text);
+            if (MetricBtn.Checked)
+            {
+                this.BMIResult = this.WeightInputValue / (this.HeightInputValue* this.HeightInputValue);
+                this.BMIResult = Math.Round(this.BMIResult, 1);
+                ResultLbl.Text = BMIResult.ToString();
+            }
+            else if (ImperialBtn.Checked)
+            {
+                this.HeightInputValue = this.HeightInputValue * 12;
+                this.BMIResult = (this.WeightInputValue*703) / (this.HeightInputValue * this.HeightInputValue);
+                this.BMIResult = Math.Round(this.BMIResult, 1);
+                ResultLbl.Text = BMIResult.ToString();
+            }
+            
         }
 
         /// <summary>
