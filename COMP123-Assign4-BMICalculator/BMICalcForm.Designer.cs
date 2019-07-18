@@ -628,7 +628,7 @@
             this.CentimetersLbl.Name = "CentimetersLbl";
             this.CentimetersLbl.Size = new System.Drawing.Size(47, 45);
             this.CentimetersLbl.TabIndex = 7;
-            this.CentimetersLbl.Text = "cm";
+            this.CentimetersLbl.Text = "m";
             // 
             // KilogramsLbl
             // 

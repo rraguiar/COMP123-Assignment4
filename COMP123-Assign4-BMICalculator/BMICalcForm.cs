@@ -161,12 +161,19 @@ namespace COMP123_Assign4_BMICalculator
         private void CalculateBMI()
         {
             this.HeightInMeters = float.Parse(HeightTxtBox.Text);
-            ResultLbl.Text = this.HeightInMeters.ToString();
+            this.WeightInKilograms = float.Parse(WeightTxtBox.Text);
+            var BMIResult = this.WeightInKilograms / (Math.Pow(this.HeightInMeters, 2));
+            ResultLbl.Text = BMIResult.ToString();
         }
 
         private void ConvertToMetric()
         {
-
+            const float footToMetersConvertRatio = 3.281F;
+            const float poundsToKilogramsConvertRatio = 2.205F;
+            float HeightInFoot = float.Parse(HeightTxtBox.Text);
+            float WeightInPounds = float.Parse(WeightTxtBox.Text);
+            this.HeightInMeters = HeightInFoot/footToMetersConvertRatio;
+            this.WeightInKilograms = WeightInPounds / poundsToKilogramsConvertRatio;
         }
 
         /// <summary>
