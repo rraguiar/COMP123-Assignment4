@@ -13,7 +13,9 @@ namespace COMP123_Assign4_BMICalculator
     public partial class BMICalculatorForm : Form
     {
         //Class attributes
-        public bool metricSystem { get; set; }
+        public float HeightInMeters { get; set; }
+        public float WeightInKilograms { get; set; }
+        public string resultLabelOutput { get; set; }
 
         public BMICalculatorForm()
         {
@@ -25,48 +27,46 @@ namespace COMP123_Assign4_BMICalculator
             this.Size = new Size(320, 480);
         }
 
-        /// <summary>
-        /// This method handle the value inserted on the HeightTxtBox
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void HeightTxtBox_TextChanged(object sender, EventArgs e)
+        private void ChangeMetricSystemLabel()
         {
             if (MetricBtn.Checked)
             {
-                if (HeightTxtBox.Text!="0" && WeightTxtBox.Text!="0")
-                {
+                FootLbl.Visible = false;
+                PoundLbl.Visible = false;
+                CentimetersLbl.Visible = true;
+                KilogramsLbl.Visible = true;
+                ClearAllFields();
 
-                }
             }
             else if (ImperialBtn.Checked)
             {
-
+                CentimetersLbl.Visible = false;
+                KilogramsLbl.Visible = false;
+                FootLbl.Visible = true;
+                PoundLbl.Visible = true;
+                ClearAllFields();
             }
         }
 
         /// <summary>
-        /// This method checks if the Metric system radio button is checked
+        /// This method handles the event when Metric system radio button is checked
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
 
         private void MetricBtn_CheckedChanged(object sender, EventArgs e)
         {
-            //if (MetricBtn.Checked)
-            //{
-            //    this.metricSystem = true;
-            //}
+            ChangeMetricSystemLabel();
         }
 
         /// <summary>
-        /// This method checks if the Imperial system radio button is checked
+        /// This method handles the event when Imperial System radio button is checked
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ImperialBtn_CheckedChanged(object sender, EventArgs e)
         {
-            //this.metricSystem = false;
+            ChangeMetricSystemLabel();
         }
 
         /// <summary>
@@ -76,7 +76,121 @@ namespace COMP123_Assign4_BMICalculator
         /// <param name="e"></param>
         private void HeightTxtBox_Click(object sender, EventArgs e)
         {
+            if (HeightTxtBox.Text == "0")
+            {
+                HeightTxtBox.Text = "";
+            }
+        }
+
+        /// <summary>
+        /// This method cleans the WeightTxtBox when clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void WeightTxtBox_Click(object sender, EventArgs e)
+        {
+            if (WeightTxtBox.Text == "0")
+            {
+                WeightTxtBox.Text = "";
+            }
+        }
+
+        /// <summary>
+        /// This method handles the event of moving out of the WeightBox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void WeightTxtBox_Leave(object sender, EventArgs e)
+        {
+            WeightTxtBox_Reset();
+        }
+
+        /// <summary>
+        /// This method insert ZERO to the WeightBox when content is empty
+        /// </summary>
+        private void WeightTxtBox_Reset()
+        {
+            if (WeightTxtBox.Text == "")
+            {
+                WeightTxtBox.Text = "0";
+            }
+        }
+
+        /// <summary>
+        /// This method handles the event of moving out of the HeightBox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void HeightTxtBox_Leave(object sender, EventArgs e)
+        {
+            HeightTxtBox_Reset();
+        }
+
+        /// <summary>
+        /// This method insert ZERO to the HeightBox when content is empty
+        /// </summary>
+        private void HeightTxtBox_Reset()
+        {
+            if (HeightTxtBox.Text == "")
+            {
+                HeightTxtBox.Text = "0";
+            }
+        }
+
+        /// <summary>
+        /// This method calculates the BMI when Calculate buttons are clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CalculateBtn_Click(object sender, EventArgs e)
+        {
+            if (MetricBtn.Checked)
+            {
+                CalculateBMI();
+            }
+            else if (ImperialBtn.Checked)
+            {
+                ConvertToMetric();
+                CalculateBMI();
+            }
+        }
+
+        /// <summary>
+        /// This method performs the BMI calculation in metric system
+        /// </summary>
+        private void CalculateBMI()
+        {
+            this.HeightInMeters = float.Parse(HeightTxtBox.Text);
+            ResultLbl.Text = this.HeightInMeters.ToString();
+        }
+
+        private void ConvertToMetric()
+        {
+
+        }
+
+        /// <summary>
+        /// This method handles the click event on the Reset/Clear Button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ResetBtn_Click(object sender, EventArgs e)
+        {
+            ClearAllFields();
+        }
+
+        /// <summary>
+        /// This method clears the Text Box'es contents.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ClearAllFields()
+        {
             HeightTxtBox.Text = "";
+            WeightTxtBox.Text = "";
+            ResultLbl.Text = "0";
+            WeightTxtBox_Reset();
+            HeightTxtBox_Reset();
         }
     }
 }
