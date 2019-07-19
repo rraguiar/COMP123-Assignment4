@@ -65,6 +65,7 @@
             this.PoundLbl = new System.Windows.Forms.Label();
             this.CentimetersLbl = new System.Windows.Forms.Label();
             this.ResultTxtBox = new System.Windows.Forms.TextBox();
+            this.BMILevelProgressBar = new System.Windows.Forms.ProgressBar();
             this.CalculatorTableLayoutPannel.SuspendLayout();
             this.BMIResultTableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
@@ -73,7 +74,7 @@
             // 
             this.MyHeightLabel.AutoSize = true;
             this.MyHeightLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MyHeightLabel.Location = new System.Drawing.Point(25, 103);
+            this.MyHeightLabel.Location = new System.Drawing.Point(25, 88);
             this.MyHeightLabel.Name = "MyHeightLabel";
             this.MyHeightLabel.Size = new System.Drawing.Size(142, 32);
             this.MyHeightLabel.TabIndex = 0;
@@ -83,7 +84,7 @@
             // 
             this.MyWeightLabel.AutoSize = true;
             this.MyWeightLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MyWeightLabel.Location = new System.Drawing.Point(25, 157);
+            this.MyWeightLabel.Location = new System.Drawing.Point(25, 142);
             this.MyWeightLabel.Name = "MyWeightLabel";
             this.MyWeightLabel.Size = new System.Drawing.Size(148, 32);
             this.MyWeightLabel.TabIndex = 0;
@@ -93,7 +94,7 @@
             // 
             this.MetricBtn.AutoSize = true;
             this.MetricBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MetricBtn.Location = new System.Drawing.Point(38, 65);
+            this.MetricBtn.Location = new System.Drawing.Point(53, 55);
             this.MetricBtn.Name = "MetricBtn";
             this.MetricBtn.Size = new System.Drawing.Size(90, 29);
             this.MetricBtn.TabIndex = 1;
@@ -106,7 +107,7 @@
             // 
             this.ImperialBtn.AutoSize = true;
             this.ImperialBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ImperialBtn.Location = new System.Drawing.Point(161, 65);
+            this.ImperialBtn.Location = new System.Drawing.Point(176, 55);
             this.ImperialBtn.Name = "ImperialBtn";
             this.ImperialBtn.Size = new System.Drawing.Size(105, 29);
             this.ImperialBtn.TabIndex = 2;
@@ -338,7 +339,7 @@
             this.BMIResultTableLayoutPanel.Controls.Add(this.UnderweightDescriptionLbl, 1, 1);
             this.BMIResultTableLayoutPanel.Controls.Add(this.UnderweightLbl, 0, 1);
             this.BMIResultTableLayoutPanel.Controls.Add(this.BMIScaleLbl, 0, 0);
-            this.BMIResultTableLayoutPanel.Location = new System.Drawing.Point(14, 205);
+            this.BMIResultTableLayoutPanel.Location = new System.Drawing.Point(14, 220);
             this.BMIResultTableLayoutPanel.Name = "BMIResultTableLayoutPanel";
             this.BMIResultTableLayoutPanel.RowCount = 5;
             this.BMIResultTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
@@ -521,26 +522,26 @@
             // 
             // HeightTxtBox
             // 
-            this.HeightTxtBox.Location = new System.Drawing.Point(135, 95);
+            this.HeightTxtBox.Location = new System.Drawing.Point(135, 80);
             this.HeightTxtBox.Name = "HeightTxtBox";
             this.HeightTxtBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.HeightTxtBox.Size = new System.Drawing.Size(110, 53);
             this.HeightTxtBox.TabIndex = 3;
             this.HeightTxtBox.Tag = "HeightTxtBox";
-            this.HeightTxtBox.Text = "0";
+            this.HeightTxtBox.Text = "0.0";
             this.HeightTxtBox.UseWaitCursor = true;
             this.HeightTxtBox.Click += new System.EventHandler(this.HeightTxtBox_Click);
             this.HeightTxtBox.Leave += new System.EventHandler(this.HeightTxtBox_Leave);
             // 
             // WeightTxtBox
             // 
-            this.WeightTxtBox.Location = new System.Drawing.Point(135, 149);
+            this.WeightTxtBox.Location = new System.Drawing.Point(135, 134);
             this.WeightTxtBox.Name = "WeightTxtBox";
             this.WeightTxtBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.WeightTxtBox.Size = new System.Drawing.Size(110, 53);
             this.WeightTxtBox.TabIndex = 4;
             this.WeightTxtBox.Tag = "WeightTxtBox";
-            this.WeightTxtBox.Text = "0";
+            this.WeightTxtBox.Text = "0.0";
             this.WeightTxtBox.UseWaitCursor = true;
             this.WeightTxtBox.Click += new System.EventHandler(this.WeightTxtBox_Click);
             this.WeightTxtBox.Leave += new System.EventHandler(this.WeightTxtBox_Leave);
@@ -550,7 +551,7 @@
             this.CalculateBtn.AutoSize = true;
             this.CalculateBtn.BackColor = System.Drawing.Color.DarkGray;
             this.CalculateBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CalculateBtn.Location = new System.Drawing.Point(20, 386);
+            this.CalculateBtn.Location = new System.Drawing.Point(20, 394);
             this.CalculateBtn.Name = "CalculateBtn";
             this.CalculateBtn.Size = new System.Drawing.Size(171, 39);
             this.CalculateBtn.TabIndex = 5;
@@ -563,7 +564,7 @@
             this.ResetBtn.AutoSize = true;
             this.ResetBtn.BackColor = System.Drawing.Color.DarkGray;
             this.ResetBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ResetBtn.Location = new System.Drawing.Point(201, 386);
+            this.ResetBtn.Location = new System.Drawing.Point(201, 394);
             this.ResetBtn.Name = "ResetBtn";
             this.ResetBtn.Size = new System.Drawing.Size(81, 39);
             this.ResetBtn.TabIndex = 6;
@@ -574,7 +575,7 @@
             // KilogramsLbl
             // 
             this.KilogramsLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.KilogramsLbl.Location = new System.Drawing.Point(251, 160);
+            this.KilogramsLbl.Location = new System.Drawing.Point(251, 145);
             this.KilogramsLbl.Name = "KilogramsLbl";
             this.KilogramsLbl.Size = new System.Drawing.Size(47, 45);
             this.KilogramsLbl.TabIndex = 8;
@@ -583,7 +584,7 @@
             // FootLbl
             // 
             this.FootLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FootLbl.Location = new System.Drawing.Point(251, 106);
+            this.FootLbl.Location = new System.Drawing.Point(251, 91);
             this.FootLbl.Name = "FootLbl";
             this.FootLbl.Size = new System.Drawing.Size(47, 45);
             this.FootLbl.TabIndex = 9;
@@ -592,7 +593,7 @@
             // PoundLbl
             // 
             this.PoundLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PoundLbl.Location = new System.Drawing.Point(251, 160);
+            this.PoundLbl.Location = new System.Drawing.Point(251, 145);
             this.PoundLbl.Name = "PoundLbl";
             this.PoundLbl.Size = new System.Drawing.Size(47, 45);
             this.PoundLbl.TabIndex = 10;
@@ -601,7 +602,7 @@
             // CentimetersLbl
             // 
             this.CentimetersLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CentimetersLbl.Location = new System.Drawing.Point(251, 106);
+            this.CentimetersLbl.Location = new System.Drawing.Point(251, 91);
             this.CentimetersLbl.Name = "CentimetersLbl";
             this.CentimetersLbl.Size = new System.Drawing.Size(47, 45);
             this.CentimetersLbl.TabIndex = 7;
@@ -615,13 +616,28 @@
             this.ResultTxtBox.ReadOnly = true;
             this.ResultTxtBox.Size = new System.Drawing.Size(274, 53);
             this.ResultTxtBox.TabIndex = 11;
+            this.ResultTxtBox.Text = "0.0";
             this.ResultTxtBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // BMILevelProgressBar
+            // 
+            this.BMILevelProgressBar.BackColor = System.Drawing.Color.Azure;
+            this.BMILevelProgressBar.Location = new System.Drawing.Point(15, 188);
+            this.BMILevelProgressBar.Maximum = 45;
+            this.BMILevelProgressBar.Minimum = 1;
+            this.BMILevelProgressBar.Name = "BMILevelProgressBar";
+            this.BMILevelProgressBar.Size = new System.Drawing.Size(273, 15);
+            this.BMILevelProgressBar.Step = 1;
+            this.BMILevelProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.BMILevelProgressBar.TabIndex = 12;
+            this.BMILevelProgressBar.Value = 1;
             // 
             // BMICalculatorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(23F, 46F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(298, 614);
+            this.Controls.Add(this.BMILevelProgressBar);
             this.Controls.Add(this.ResultTxtBox);
             this.Controls.Add(this.KilogramsLbl);
             this.Controls.Add(this.CentimetersLbl);
@@ -642,7 +658,7 @@
             this.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.MaximizeBox = false;
             this.Name = "BMICalculatorForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BMI Calculator";
             this.Load += new System.EventHandler(this.BMICalculatorForm_Load);
             this.CalculatorTableLayoutPannel.ResumeLayout(false);
@@ -691,6 +707,7 @@
         private System.Windows.Forms.Label PoundLbl;
         private System.Windows.Forms.Label CentimetersLbl;
         private System.Windows.Forms.TextBox ResultTxtBox;
+        private System.Windows.Forms.ProgressBar BMILevelProgressBar;
     }
 }
 

@@ -5,7 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 
 /*
@@ -42,6 +42,12 @@ namespace COMP123_Assign4_BMICalculator
         public BMICalculatorForm()
         {
             InitializeComponent();
+
+            ///Splash screen
+            Form startForm = new StartForm();
+            startForm.Show();
+            Thread.Sleep(300);
+            startForm.Close();
         }
 
         /// <summary>
@@ -82,21 +88,20 @@ namespace COMP123_Assign4_BMICalculator
         /// </summary>
         private void ConvertSystem()
         {
-            double convertHeight, convertWeight;
-            if (HeightTxtBox.Text != "0")
+            double convertHeight=double.Parse(HeightTxtBox.Text);
+            double convertWeight = double.Parse(WeightTxtBox.Text);
+            if (convertHeight>0)
             {
                 if (MetricBtn.Checked)
                 {
                     //feet to meters
-                    convertHeight = double.Parse(HeightTxtBox.Text);
-                    convertHeight = convertHeight / 3.281;
+                    convertHeight /= 3.281;
                     HeightTxtBox.Text = convertHeight.ToString("F");
                 }
                 else
                 {
                     //meters to feet
-                    convertHeight = double.Parse(HeightTxtBox.Text);
-                    convertHeight = convertHeight * 3.281;
+                    convertHeight *= 3.281;
                     HeightTxtBox.Text = convertHeight.ToString("F");
                 }
             }
@@ -104,20 +109,18 @@ namespace COMP123_Assign4_BMICalculator
             {
                 ClearAllFields();
             }
-            if (WeightTxtBox.Text!= "0")
+            if (convertWeight>0)
             {
                 if (MetricBtn.Checked)
                 {
                     //pounds to kg
-                    convertWeight = double.Parse(WeightTxtBox.Text);
-                    convertWeight = convertWeight / 2.205;
+                    convertWeight /= 2.205;
                     WeightTxtBox.Text = convertWeight.ToString("F");
                 }
                 else
                 {
                     //kg to pounds
-                    convertWeight = double.Parse(WeightTxtBox.Text);
-                    convertWeight = convertWeight * 2.205;
+                    convertWeight *= 2.205;
                     WeightTxtBox.Text = convertWeight.ToString("F");
                 }
             }
@@ -160,7 +163,7 @@ namespace COMP123_Assign4_BMICalculator
         /// <param name="e"></param>
         private void HeightTxtBox_Click(object sender, EventArgs e)
         {
-            if (HeightTxtBox.Text == "0")
+            if (HeightTxtBox.Text == "0.00")
             {
                 HeightTxtBox.Text = "";
             }
@@ -173,7 +176,7 @@ namespace COMP123_Assign4_BMICalculator
         /// <param name="e"></param>
         private void WeightTxtBox_Click(object sender, EventArgs e)
         {
-            if (WeightTxtBox.Text == "0")
+            if (WeightTxtBox.Text == "0.00")
             {
                 WeightTxtBox.Text = "";
             }
@@ -196,7 +199,7 @@ namespace COMP123_Assign4_BMICalculator
         {
             if (WeightTxtBox.Text == "")
             {
-                WeightTxtBox.Text = "0";
+                WeightTxtBox.Text = "0.00";
             }
         }
 
@@ -217,7 +220,7 @@ namespace COMP123_Assign4_BMICalculator
         {
             if (HeightTxtBox.Text == "")
             {
-                HeightTxtBox.Text = "0";
+                HeightTxtBox.Text = "0.00";
             }
         }
 
@@ -243,13 +246,15 @@ namespace COMP123_Assign4_BMICalculator
             if (MetricBtn.Checked)
             {
                 if (this._HeightInputValue <= 2.80 && this._HeightInputValue >= 0.5)
+                    //Tallest and shortest people ever - approximate numbers
                 {
                     if (this._WeightInputValue <= 635 && this._WeightInputValue >= 30)
+                        //Heaviest and lighest people ever - approximate numbers
                     {
                         this._BMIResult = this._WeightInputValue / (this._HeightInputValue * this._HeightInputValue);
                         this._BMIResult = Math.Round(this._BMIResult, 1);
                         ResultTxtBox.Text = _BMIResult.ToString();
-                        ChangeColorBMIResults();
+                        InteractionBMIResults();
                     }
                     else
                     {
@@ -264,14 +269,16 @@ namespace COMP123_Assign4_BMICalculator
             else if (ImperialBtn.Checked)
             {
                 if (this._HeightInputValue <= 9.3 && this._HeightInputValue >= 1.75)
+                //Tallest and shortest people ever - approximate numbers
                 {
                     if (this._WeightInputValue <= 1340 && this._WeightInputValue >= 66)
+                    //Heaviest and lighest people ever - approximate numbers
                     {
                         this._HeightInputValue = this._HeightInputValue * 12;
                         this._BMIResult = (this._WeightInputValue * 703) / (this._HeightInputValue * this._HeightInputValue);
                         this._BMIResult = Math.Round(this._BMIResult, 1);
                         ResultTxtBox.Text = _BMIResult.ToString();
-                        ChangeColorBMIResults();
+                        InteractionBMIResults();
                     }
                     else
                     {
@@ -286,33 +293,37 @@ namespace COMP123_Assign4_BMICalculator
         }
 
         /// <summary>
-        /// This method changes the color of the BMI Result field and BMI Result Table
+        /// This method changes the color of the BMI Result field and BMI Result Table interactively
         /// </summary>
-        private void ChangeColorBMIResults()
+        private void InteractionBMIResults()
         {
             if (this._BMIResult >= 0.1 && this._BMIResult < 18.5)
             {
                 UnderweightLbl.BackColor = Color.LemonChiffon;
                 UnderweightDescriptionLbl.BackColor = Color.LemonChiffon;
                 ResultTxtBox.BackColor = Color.LemonChiffon;
+                FillProgressBar();
             }
             else if (this._BMIResult >= 18.5 && this._BMIResult <=24.9)
             {
                 NormalLbl.BackColor = Color.FromArgb(192, 255, 192);
                 NormalDescriptionLbl.BackColor = Color.FromArgb(192, 255, 192);
                 ResultTxtBox.BackColor = Color.FromArgb(192, 255, 192);
+                FillProgressBar();
             }
             else if(this._BMIResult >= 25 && this._BMIResult <= 29.9)
             {
                 OverweightLbl.BackColor = Color.LemonChiffon;
                 OverweightDescriptionLbl.BackColor = Color.LemonChiffon;
                 ResultTxtBox.BackColor = Color.LemonChiffon;
+                FillProgressBar();
             }
             else if (this._BMIResult >= 30)
             {
                 ObeseLbl.BackColor = Color.FromArgb(255, 192, 192);
                 ObeseDescriptionLbl.BackColor = Color.FromArgb(255, 192, 192);
                 ResultTxtBox.BackColor = Color.FromArgb(255, 192, 192);
+                FillProgressBar();
             }
             else if(_BMIResult==0)
             {
@@ -325,6 +336,18 @@ namespace COMP123_Assign4_BMICalculator
                 ObeseLbl.BackColor = Color.Azure;
                 ObeseDescriptionLbl.BackColor = Color.Azure;
                 ResultTxtBox.BackColor = Color.White;
+                BMILevelProgressBar.Value = 1;
+            }
+        }
+
+        /// <summary>
+        /// This method fill the progress bar according to the BMI result
+        /// </summary>
+        private void FillProgressBar()
+        {
+            for (int i = 5; i <= Convert.ToInt32(_BMIResult); i++)
+            {
+                BMILevelProgressBar.PerformStep();
             }
         }
 
@@ -355,11 +378,10 @@ namespace COMP123_Assign4_BMICalculator
         {
             HeightTxtBox.Text = "";
             WeightTxtBox.Text = "";
-            //_BMIResult = 0;
             ResultTxtBox_Reset();
             WeightTxtBox_Reset();
             HeightTxtBox_Reset();
-            ChangeColorBMIResults();
+            InteractionBMIResults();
         }
 
         /// <summary>
@@ -368,9 +390,9 @@ namespace COMP123_Assign4_BMICalculator
         private void ResultTxtBox_Reset()
         {
             _BMIResult = 0;
-            ChangeColorBMIResults();
+            InteractionBMIResults();
             ResultTxtBox.TextAlign = HorizontalAlignment.Right;
-            ResultTxtBox.Text = "0";
+            ResultTxtBox.Text = "0.0";
         }
     }
 }
