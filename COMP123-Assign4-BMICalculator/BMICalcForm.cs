@@ -22,11 +22,19 @@ namespace COMP123_Assign4_BMICalculator
             InitializeComponent();
         }
 
+        /// <summary>
+        /// This method is called when the Form loads
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BMICalculatorForm_Load(object sender, EventArgs e)
         {
             this.Size = new Size(320, 480);
         }
 
+        /// <summary>
+        /// This method handles the change on the Metric Systems
+        /// </summary>
         private void ChangeMetricSystemLabel()
         {
             if (MetricBtn.Checked)
@@ -35,8 +43,7 @@ namespace COMP123_Assign4_BMICalculator
                 PoundLbl.Visible = false;
                 CentimetersLbl.Visible = true;
                 KilogramsLbl.Visible = true;
-                ClearAllFields();
-
+                ConvertSystem();
             }
             else if (ImperialBtn.Checked)
             {
@@ -44,6 +51,56 @@ namespace COMP123_Assign4_BMICalculator
                 KilogramsLbl.Visible = false;
                 FootLbl.Visible = true;
                 PoundLbl.Visible = true;
+                ConvertSystem();
+            }
+        }
+
+        /// <summary>
+        /// This method converts from one system to the other when the measurement systems are selected
+        /// </summary>
+        private void ConvertSystem()
+        {
+            double convertHeight, convertWeight;
+            if (HeightTxtBox.Text != "0")
+            {
+                if (MetricBtn.Checked)
+                {
+                    //feet to meters
+                    convertHeight = double.Parse(HeightTxtBox.Text);
+                    convertHeight = convertHeight / 3.281;
+                    HeightTxtBox.Text = convertHeight.ToString("F");
+                }
+                else
+                {
+                    //meters to feet
+                    convertHeight = double.Parse(HeightTxtBox.Text);
+                    convertHeight = convertHeight * 3.281;
+                    HeightTxtBox.Text = convertHeight.ToString("F");
+                }
+            }
+            else
+            {
+                ClearAllFields();
+            }
+            if (WeightTxtBox.Text!= "0")
+            {
+                if (MetricBtn.Checked)
+                {
+                    //pounds to kg
+                    convertWeight = double.Parse(WeightTxtBox.Text);
+                    convertWeight = convertWeight / 2.205;
+                    WeightTxtBox.Text = convertWeight.ToString("F");
+                }
+                else
+                {
+                    //kg to pounds
+                    convertWeight = double.Parse(WeightTxtBox.Text);
+                    convertWeight = convertWeight * 2.205;
+                    WeightTxtBox.Text = convertWeight.ToString("F");
+                }
+            }
+            else
+            {
                 ClearAllFields();
             }
         }
@@ -53,7 +110,6 @@ namespace COMP123_Assign4_BMICalculator
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-
         private void MetricBtn_CheckedChanged(object sender, EventArgs e)
         {
             ChangeMetricSystemLabel();
@@ -144,7 +200,8 @@ namespace COMP123_Assign4_BMICalculator
         /// <param name="e"></param>
         private void CalculateBtn_Click(object sender, EventArgs e)
         {
-                CalculateBMI();
+            ResultLbl_Reset();
+            CalculateBMI();
         }
 
         /// <summary>
@@ -156,18 +213,55 @@ namespace COMP123_Assign4_BMICalculator
             this.WeightInputValue = double.Parse(WeightTxtBox.Text);
             if (MetricBtn.Checked)
             {
-                this.BMIResult = this.WeightInputValue / (this.HeightInputValue* this.HeightInputValue);
-                this.BMIResult = Math.Round(this.BMIResult, 1);
-                ResultLbl.Text = BMIResult.ToString();
+                if (this.HeightInputValue <= 2.80 && this.HeightInputValue >= 0.5)
+                {
+                    if (this.WeightInputValue <= 635 && this.WeightInputValue >= 30)
+                    {
+                        this.BMIResult = this.WeightInputValue / (this.HeightInputValue * this.HeightInputValue);
+                        this.BMIResult = Math.Round(this.BMIResult, 1);
+                        ResultLbl.Text = BMIResult.ToString();
+                    }
+                    else
+                    {
+                        ErrorDisplay("Weight:");
+                    }
+                }
+                else
+                {
+                    ErrorDisplay("Height:");
+                }
             }
             else if (ImperialBtn.Checked)
             {
-                this.HeightInputValue = this.HeightInputValue * 12;
-                this.BMIResult = (this.WeightInputValue*703) / (this.HeightInputValue * this.HeightInputValue);
-                this.BMIResult = Math.Round(this.BMIResult, 1);
-                ResultLbl.Text = BMIResult.ToString();
+                if (this.HeightInputValue <= 9.3 && this.HeightInputValue >= 1.75)
+                {
+                    if (this.WeightInputValue <= 1340 && this.WeightInputValue >= 66)
+                    {
+                        this.HeightInputValue = this.HeightInputValue * 12;
+                        this.BMIResult = (this.WeightInputValue * 703) / (this.HeightInputValue * this.HeightInputValue);
+                        this.BMIResult = Math.Round(this.BMIResult, 1);
+                        ResultLbl.Text = BMIResult.ToString();
+                    }
+                    else
+                    {
+                        ErrorDisplay("Weight:");
+                    }
+                }
+                else
+                {
+                    ErrorDisplay("Height:");
+                }
             }
-            
+        }
+
+        /// <summary>
+        /// This method displays the error message
+        /// </summary>
+        /// <param name="field"></param>
+        private void ErrorDisplay(string field)
+        {
+            ResultLbl.TextAlign = ContentAlignment.MiddleCenter;
+            ResultLbl.Text = field + " ERROR!";
         }
 
         /// <summary>
@@ -183,15 +277,22 @@ namespace COMP123_Assign4_BMICalculator
         /// <summary>
         /// This method clears the Text Box'es contents.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void ClearAllFields()
         {
             HeightTxtBox.Text = "";
             WeightTxtBox.Text = "";
-            ResultLbl.Text = "0";
+            ResultLbl_Reset();
             WeightTxtBox_Reset();
             HeightTxtBox_Reset();
+        }
+
+        /// <summary>
+        /// This method resets the result label content
+        /// </summary>
+        private void ResultLbl_Reset()
+        {
+            ResultLbl.TextAlign = ContentAlignment.MiddleRight;
+            ResultLbl.Text = "0";
         }
     }
 }
