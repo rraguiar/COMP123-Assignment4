@@ -8,14 +8,36 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/*
+    CENTENNIAL COLLEGE
+    COMP123 - Programming 2 - C# Windows Forms - IDE
+   
+    Assignment 4 - Summer 2019
+    Author: Rafael Aguiar
+    Student id: 301041266
+    Date: July/19/2019
+    
+    Assignment: BMI Calculator
+
+    Release Control:
+    - July 16, 2019: U.I. first release
+    - July 16, 2019: Add BMI Results table to U.I. - U.I. final version
+    - July 17, 2019: Changed Labels to Text box on U.I. and created filling data functionalities
+    - July 18, 2019: Added reset button functionalities and BMI Calculation testing
+    - July 18, 2019: BMI Calculations done - but to fix on Imperial System
+    - July 18, 2019: Calculations bugs fixed and round decimal done
+    - July 19, 2019: Added too much or too few height/weight error handling and value convertion when Unit System changes
+    - July 19, 2019: Added interaction with BMI Results table and fixed bugs.
+ */
+
 namespace COMP123_Assign4_BMICalculator
 {
     public partial class BMICalculatorForm : Form
     {
         //Class attributes
-        public double HeightInputValue { get; set; }
-        public double WeightInputValue { get; set; }
-        public double BMIResult { get; set; }
+        private double _HeightInputValue { get; set; }
+        private double _WeightInputValue { get; set; }
+        private double _BMIResult { get; set; }
 
         public BMICalculatorForm()
         {
@@ -112,7 +134,10 @@ namespace COMP123_Assign4_BMICalculator
         /// <param name="e"></param>
         private void MetricBtn_CheckedChanged(object sender, EventArgs e)
         {
-            ChangeMetricSystemLabel();
+            if (MetricBtn.Checked)
+            {
+                ChangeMetricSystemLabel();
+            }
         }
 
         /// <summary>
@@ -122,7 +147,10 @@ namespace COMP123_Assign4_BMICalculator
         /// <param name="e"></param>
         private void ImperialBtn_CheckedChanged(object sender, EventArgs e)
         {
-            ChangeMetricSystemLabel();
+            if (ImperialBtn.Checked)
+            {
+                ChangeMetricSystemLabel();
+            }
         }
 
         /// <summary>
@@ -200,8 +228,9 @@ namespace COMP123_Assign4_BMICalculator
         /// <param name="e"></param>
         private void CalculateBtn_Click(object sender, EventArgs e)
         {
-            ResultLbl_Reset();
+            ResultTxtBox_Reset();
             CalculateBMI();
+
         }
 
         /// <summary>
@@ -209,17 +238,18 @@ namespace COMP123_Assign4_BMICalculator
         /// </summary>
         private void CalculateBMI()
         {
-            this.HeightInputValue = double.Parse(HeightTxtBox.Text);
-            this.WeightInputValue = double.Parse(WeightTxtBox.Text);
+            this._HeightInputValue = double.Parse(HeightTxtBox.Text);
+            this._WeightInputValue = double.Parse(WeightTxtBox.Text);
             if (MetricBtn.Checked)
             {
-                if (this.HeightInputValue <= 2.80 && this.HeightInputValue >= 0.5)
+                if (this._HeightInputValue <= 2.80 && this._HeightInputValue >= 0.5)
                 {
-                    if (this.WeightInputValue <= 635 && this.WeightInputValue >= 30)
+                    if (this._WeightInputValue <= 635 && this._WeightInputValue >= 30)
                     {
-                        this.BMIResult = this.WeightInputValue / (this.HeightInputValue * this.HeightInputValue);
-                        this.BMIResult = Math.Round(this.BMIResult, 1);
-                        ResultLbl.Text = BMIResult.ToString();
+                        this._BMIResult = this._WeightInputValue / (this._HeightInputValue * this._HeightInputValue);
+                        this._BMIResult = Math.Round(this._BMIResult, 1);
+                        ResultTxtBox.Text = _BMIResult.ToString();
+                        ChangeColorBMIResults();
                     }
                     else
                     {
@@ -233,14 +263,15 @@ namespace COMP123_Assign4_BMICalculator
             }
             else if (ImperialBtn.Checked)
             {
-                if (this.HeightInputValue <= 9.3 && this.HeightInputValue >= 1.75)
+                if (this._HeightInputValue <= 9.3 && this._HeightInputValue >= 1.75)
                 {
-                    if (this.WeightInputValue <= 1340 && this.WeightInputValue >= 66)
+                    if (this._WeightInputValue <= 1340 && this._WeightInputValue >= 66)
                     {
-                        this.HeightInputValue = this.HeightInputValue * 12;
-                        this.BMIResult = (this.WeightInputValue * 703) / (this.HeightInputValue * this.HeightInputValue);
-                        this.BMIResult = Math.Round(this.BMIResult, 1);
-                        ResultLbl.Text = BMIResult.ToString();
+                        this._HeightInputValue = this._HeightInputValue * 12;
+                        this._BMIResult = (this._WeightInputValue * 703) / (this._HeightInputValue * this._HeightInputValue);
+                        this._BMIResult = Math.Round(this._BMIResult, 1);
+                        ResultTxtBox.Text = _BMIResult.ToString();
+                        ChangeColorBMIResults();
                     }
                     else
                     {
@@ -255,13 +286,56 @@ namespace COMP123_Assign4_BMICalculator
         }
 
         /// <summary>
+        /// This method changes the color of the BMI Result field and BMI Result Table
+        /// </summary>
+        private void ChangeColorBMIResults()
+        {
+            if (this._BMIResult >= 0.1 && this._BMIResult < 18.5)
+            {
+                UnderweightLbl.BackColor = Color.LemonChiffon;
+                UnderweightDescriptionLbl.BackColor = Color.LemonChiffon;
+                ResultTxtBox.BackColor = Color.LemonChiffon;
+            }
+            else if (this._BMIResult >= 18.5 && this._BMIResult <=24.9)
+            {
+                NormalLbl.BackColor = Color.FromArgb(192, 255, 192);
+                NormalDescriptionLbl.BackColor = Color.FromArgb(192, 255, 192);
+                ResultTxtBox.BackColor = Color.FromArgb(192, 255, 192);
+            }
+            else if(this._BMIResult >= 25 && this._BMIResult <= 29.9)
+            {
+                OverweightLbl.BackColor = Color.LemonChiffon;
+                OverweightDescriptionLbl.BackColor = Color.LemonChiffon;
+                ResultTxtBox.BackColor = Color.LemonChiffon;
+            }
+            else if (this._BMIResult >= 30)
+            {
+                ObeseLbl.BackColor = Color.FromArgb(255, 192, 192);
+                ObeseDescriptionLbl.BackColor = Color.FromArgb(255, 192, 192);
+                ResultTxtBox.BackColor = Color.FromArgb(255, 192, 192);
+            }
+            else if(_BMIResult==0)
+            {
+                UnderweightLbl.BackColor = Color.Azure;
+                UnderweightDescriptionLbl.BackColor = Color.Azure;
+                NormalLbl.BackColor = Color.Azure;
+                NormalDescriptionLbl.BackColor=Color.Azure;
+                OverweightLbl.BackColor = Color.Azure;
+                OverweightDescriptionLbl.BackColor = Color.Azure;
+                ObeseLbl.BackColor = Color.Azure;
+                ObeseDescriptionLbl.BackColor = Color.Azure;
+                ResultTxtBox.BackColor = Color.White;
+            }
+        }
+
+        /// <summary>
         /// This method displays the error message
         /// </summary>
         /// <param name="field"></param>
         private void ErrorDisplay(string field)
         {
-            ResultLbl.TextAlign = ContentAlignment.MiddleCenter;
-            ResultLbl.Text = field + " ERROR!";
+            ResultTxtBox.TextAlign = HorizontalAlignment.Center;
+            ResultTxtBox.Text = field + " ERROR!";
         }
 
         /// <summary>
@@ -281,18 +355,22 @@ namespace COMP123_Assign4_BMICalculator
         {
             HeightTxtBox.Text = "";
             WeightTxtBox.Text = "";
-            ResultLbl_Reset();
+            //_BMIResult = 0;
+            ResultTxtBox_Reset();
             WeightTxtBox_Reset();
             HeightTxtBox_Reset();
+            ChangeColorBMIResults();
         }
 
         /// <summary>
         /// This method resets the result label content
         /// </summary>
-        private void ResultLbl_Reset()
+        private void ResultTxtBox_Reset()
         {
-            ResultLbl.TextAlign = ContentAlignment.MiddleRight;
-            ResultLbl.Text = "0";
+            _BMIResult = 0;
+            ChangeColorBMIResults();
+            ResultTxtBox.TextAlign = HorizontalAlignment.Right;
+            ResultTxtBox.Text = "0";
         }
     }
 }

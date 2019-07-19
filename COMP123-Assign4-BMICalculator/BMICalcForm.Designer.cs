@@ -30,7 +30,6 @@
         {
             this.MyHeightLabel = new System.Windows.Forms.Label();
             this.MyWeightLabel = new System.Windows.Forms.Label();
-            this.ResultLbl = new System.Windows.Forms.Label();
             this.MetricBtn = new System.Windows.Forms.RadioButton();
             this.ImperialBtn = new System.Windows.Forms.RadioButton();
             this.CalculatorTableLayoutPannel = new System.Windows.Forms.TableLayoutPanel();
@@ -61,10 +60,11 @@
             this.WeightTxtBox = new System.Windows.Forms.TextBox();
             this.CalculateBtn = new System.Windows.Forms.Button();
             this.ResetBtn = new System.Windows.Forms.Button();
-            this.CentimetersLbl = new System.Windows.Forms.Label();
             this.KilogramsLbl = new System.Windows.Forms.Label();
             this.FootLbl = new System.Windows.Forms.Label();
             this.PoundLbl = new System.Windows.Forms.Label();
+            this.CentimetersLbl = new System.Windows.Forms.Label();
+            this.ResultTxtBox = new System.Windows.Forms.TextBox();
             this.CalculatorTableLayoutPannel.SuspendLayout();
             this.BMIResultTableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
@@ -88,17 +88,6 @@
             this.MyWeightLabel.Size = new System.Drawing.Size(148, 32);
             this.MyWeightLabel.TabIndex = 0;
             this.MyWeightLabel.Text = "My Weight";
-            // 
-            // ResultLbl
-            // 
-            this.ResultLbl.BackColor = System.Drawing.Color.White;
-            this.ResultLbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ResultLbl.Location = new System.Drawing.Point(15, 9);
-            this.ResultLbl.Name = "ResultLbl";
-            this.ResultLbl.Size = new System.Drawing.Size(274, 48);
-            this.ResultLbl.TabIndex = 1;
-            this.ResultLbl.Text = "0";
-            this.ResultLbl.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // MetricBtn
             // 
@@ -144,14 +133,14 @@
             this.CalculatorTableLayoutPannel.Controls.Add(this.SevenBtn, 0, 0);
             this.CalculatorTableLayoutPannel.Controls.Add(this.EightBtn, 1, 0);
             this.CalculatorTableLayoutPannel.Controls.Add(this.BackBtn, 2, 3);
-            this.CalculatorTableLayoutPannel.Location = new System.Drawing.Point(15, 440);
+            this.CalculatorTableLayoutPannel.Location = new System.Drawing.Point(14, 440);
             this.CalculatorTableLayoutPannel.Name = "CalculatorTableLayoutPannel";
             this.CalculatorTableLayoutPannel.RowCount = 4;
             this.CalculatorTableLayoutPannel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.CalculatorTableLayoutPannel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.CalculatorTableLayoutPannel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.CalculatorTableLayoutPannel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.CalculatorTableLayoutPannel.Size = new System.Drawing.Size(274, 225);
+            this.CalculatorTableLayoutPannel.Size = new System.Drawing.Size(275, 165);
             this.CalculatorTableLayoutPannel.TabIndex = 3;
             // 
             // DecimalBtn
@@ -161,9 +150,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DecimalBtn.BackColor = System.Drawing.Color.DarkGray;
             this.DecimalBtn.ForeColor = System.Drawing.Color.White;
-            this.DecimalBtn.Location = new System.Drawing.Point(3, 171);
+            this.DecimalBtn.Location = new System.Drawing.Point(3, 126);
             this.DecimalBtn.Name = "DecimalBtn";
-            this.DecimalBtn.Size = new System.Drawing.Size(85, 51);
+            this.DecimalBtn.Size = new System.Drawing.Size(85, 36);
             this.DecimalBtn.TabIndex = 17;
             this.DecimalBtn.Tag = "Decimal";
             this.DecimalBtn.Text = ".";
@@ -176,9 +165,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ZeroBtn.BackColor = System.Drawing.Color.DarkGray;
             this.ZeroBtn.ForeColor = System.Drawing.Color.White;
-            this.ZeroBtn.Location = new System.Drawing.Point(94, 171);
+            this.ZeroBtn.Location = new System.Drawing.Point(94, 126);
             this.ZeroBtn.Name = "ZeroBtn";
-            this.ZeroBtn.Size = new System.Drawing.Size(85, 51);
+            this.ZeroBtn.Size = new System.Drawing.Size(85, 36);
             this.ZeroBtn.TabIndex = 16;
             this.ZeroBtn.Tag = "0";
             this.ZeroBtn.Text = "0";
@@ -191,9 +180,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ThreeBtn.BackColor = System.Drawing.Color.DarkGray;
             this.ThreeBtn.ForeColor = System.Drawing.Color.White;
-            this.ThreeBtn.Location = new System.Drawing.Point(185, 115);
+            this.ThreeBtn.Location = new System.Drawing.Point(185, 85);
             this.ThreeBtn.Name = "ThreeBtn";
-            this.ThreeBtn.Size = new System.Drawing.Size(86, 50);
+            this.ThreeBtn.Size = new System.Drawing.Size(87, 35);
             this.ThreeBtn.TabIndex = 15;
             this.ThreeBtn.Tag = "3";
             this.ThreeBtn.Text = "3";
@@ -206,9 +195,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TwoBtn.BackColor = System.Drawing.Color.DarkGray;
             this.TwoBtn.ForeColor = System.Drawing.Color.White;
-            this.TwoBtn.Location = new System.Drawing.Point(94, 115);
+            this.TwoBtn.Location = new System.Drawing.Point(94, 85);
             this.TwoBtn.Name = "TwoBtn";
-            this.TwoBtn.Size = new System.Drawing.Size(85, 50);
+            this.TwoBtn.Size = new System.Drawing.Size(85, 35);
             this.TwoBtn.TabIndex = 14;
             this.TwoBtn.Tag = "2";
             this.TwoBtn.Text = "2";
@@ -221,9 +210,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.OneBtn.BackColor = System.Drawing.Color.DarkGray;
             this.OneBtn.ForeColor = System.Drawing.Color.White;
-            this.OneBtn.Location = new System.Drawing.Point(3, 115);
+            this.OneBtn.Location = new System.Drawing.Point(3, 85);
             this.OneBtn.Name = "OneBtn";
-            this.OneBtn.Size = new System.Drawing.Size(85, 50);
+            this.OneBtn.Size = new System.Drawing.Size(85, 35);
             this.OneBtn.TabIndex = 13;
             this.OneBtn.Tag = "1";
             this.OneBtn.Text = "1";
@@ -236,9 +225,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SixBtn.BackColor = System.Drawing.Color.DarkGray;
             this.SixBtn.ForeColor = System.Drawing.Color.White;
-            this.SixBtn.Location = new System.Drawing.Point(185, 59);
+            this.SixBtn.Location = new System.Drawing.Point(185, 44);
             this.SixBtn.Name = "SixBtn";
-            this.SixBtn.Size = new System.Drawing.Size(86, 50);
+            this.SixBtn.Size = new System.Drawing.Size(87, 35);
             this.SixBtn.TabIndex = 12;
             this.SixBtn.Tag = "6";
             this.SixBtn.Text = "6";
@@ -251,9 +240,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.FiveBtn.BackColor = System.Drawing.Color.DarkGray;
             this.FiveBtn.ForeColor = System.Drawing.Color.White;
-            this.FiveBtn.Location = new System.Drawing.Point(94, 59);
+            this.FiveBtn.Location = new System.Drawing.Point(94, 44);
             this.FiveBtn.Name = "FiveBtn";
-            this.FiveBtn.Size = new System.Drawing.Size(85, 50);
+            this.FiveBtn.Size = new System.Drawing.Size(85, 35);
             this.FiveBtn.TabIndex = 11;
             this.FiveBtn.Tag = "5";
             this.FiveBtn.Text = "5";
@@ -266,9 +255,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.FourBtn.BackColor = System.Drawing.Color.DarkGray;
             this.FourBtn.ForeColor = System.Drawing.Color.White;
-            this.FourBtn.Location = new System.Drawing.Point(3, 59);
+            this.FourBtn.Location = new System.Drawing.Point(3, 44);
             this.FourBtn.Name = "FourBtn";
-            this.FourBtn.Size = new System.Drawing.Size(85, 50);
+            this.FourBtn.Size = new System.Drawing.Size(85, 35);
             this.FourBtn.TabIndex = 10;
             this.FourBtn.Tag = "4";
             this.FourBtn.Text = "4";
@@ -279,14 +268,14 @@
             this.BackBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.BackBtn.BackColor = System.Drawing.Color.DarkGray;
+            this.BackBtn.BackColor = System.Drawing.Color.LightCoral;
             this.BackBtn.ForeColor = System.Drawing.Color.White;
-            this.BackBtn.Location = new System.Drawing.Point(185, 171);
+            this.BackBtn.Location = new System.Drawing.Point(185, 126);
             this.BackBtn.Name = "BackBtn";
-            this.BackBtn.Size = new System.Drawing.Size(86, 51);
+            this.BackBtn.Size = new System.Drawing.Size(87, 36);
             this.BackBtn.TabIndex = 18;
             this.BackBtn.Tag = "Backspace";
-            this.BackBtn.Text = "<";
+            this.BackBtn.Text = "Back";
             this.BackBtn.UseVisualStyleBackColor = false;
             // 
             // NineBtn
@@ -298,7 +287,7 @@
             this.NineBtn.ForeColor = System.Drawing.Color.White;
             this.NineBtn.Location = new System.Drawing.Point(185, 3);
             this.NineBtn.Name = "NineBtn";
-            this.NineBtn.Size = new System.Drawing.Size(86, 50);
+            this.NineBtn.Size = new System.Drawing.Size(87, 35);
             this.NineBtn.TabIndex = 9;
             this.NineBtn.Tag = "9";
             this.NineBtn.Text = "9";
@@ -313,7 +302,7 @@
             this.SevenBtn.ForeColor = System.Drawing.Color.White;
             this.SevenBtn.Location = new System.Drawing.Point(3, 3);
             this.SevenBtn.Name = "SevenBtn";
-            this.SevenBtn.Size = new System.Drawing.Size(85, 50);
+            this.SevenBtn.Size = new System.Drawing.Size(85, 35);
             this.SevenBtn.TabIndex = 7;
             this.SevenBtn.Tag = "7";
             this.SevenBtn.Text = "7";
@@ -328,7 +317,7 @@
             this.EightBtn.ForeColor = System.Drawing.Color.White;
             this.EightBtn.Location = new System.Drawing.Point(94, 3);
             this.EightBtn.Name = "EightBtn";
-            this.EightBtn.Size = new System.Drawing.Size(85, 50);
+            this.EightBtn.Size = new System.Drawing.Size(85, 35);
             this.EightBtn.TabIndex = 8;
             this.EightBtn.Tag = "8";
             this.EightBtn.Text = "8";
@@ -349,7 +338,7 @@
             this.BMIResultTableLayoutPanel.Controls.Add(this.UnderweightDescriptionLbl, 1, 1);
             this.BMIResultTableLayoutPanel.Controls.Add(this.UnderweightLbl, 0, 1);
             this.BMIResultTableLayoutPanel.Controls.Add(this.BMIScaleLbl, 0, 0);
-            this.BMIResultTableLayoutPanel.Location = new System.Drawing.Point(15, 205);
+            this.BMIResultTableLayoutPanel.Location = new System.Drawing.Point(14, 205);
             this.BMIResultTableLayoutPanel.Name = "BMIResultTableLayoutPanel";
             this.BMIResultTableLayoutPanel.RowCount = 5;
             this.BMIResultTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
@@ -357,7 +346,7 @@
             this.BMIResultTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.BMIResultTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.BMIResultTableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.BMIResultTableLayoutPanel.Size = new System.Drawing.Size(274, 165);
+            this.BMIResultTableLayoutPanel.Size = new System.Drawing.Size(275, 165);
             this.BMIResultTableLayoutPanel.TabIndex = 4;
             // 
             // ObeseDescriptionLbl
@@ -365,11 +354,11 @@
             this.ObeseDescriptionLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ObeseDescriptionLbl.BackColor = System.Drawing.Color.Coral;
+            this.ObeseDescriptionLbl.BackColor = System.Drawing.Color.Azure;
             this.ObeseDescriptionLbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ObeseDescriptionLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ObeseDescriptionLbl.ForeColor = System.Drawing.Color.Black;
-            this.ObeseDescriptionLbl.Location = new System.Drawing.Point(94, 132);
+            this.ObeseDescriptionLbl.Location = new System.Drawing.Point(95, 132);
             this.ObeseDescriptionLbl.Margin = new System.Windows.Forms.Padding(1, 0, 1, 1);
             this.ObeseDescriptionLbl.Name = "ObeseDescriptionLbl";
             this.ObeseDescriptionLbl.Size = new System.Drawing.Size(179, 32);
@@ -382,14 +371,14 @@
             this.ObeseLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ObeseLbl.BackColor = System.Drawing.Color.Coral;
+            this.ObeseLbl.BackColor = System.Drawing.Color.Azure;
             this.ObeseLbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ObeseLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ObeseLbl.ForeColor = System.Drawing.Color.Black;
             this.ObeseLbl.Location = new System.Drawing.Point(1, 132);
             this.ObeseLbl.Margin = new System.Windows.Forms.Padding(1, 0, 1, 1);
             this.ObeseLbl.Name = "ObeseLbl";
-            this.ObeseLbl.Size = new System.Drawing.Size(91, 32);
+            this.ObeseLbl.Size = new System.Drawing.Size(92, 32);
             this.ObeseLbl.TabIndex = 4;
             this.ObeseLbl.Text = "Obese";
             this.ObeseLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -399,11 +388,11 @@
             this.OverweightDescriptionLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.OverweightDescriptionLbl.BackColor = System.Drawing.Color.Khaki;
+            this.OverweightDescriptionLbl.BackColor = System.Drawing.Color.Azure;
             this.OverweightDescriptionLbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.OverweightDescriptionLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OverweightDescriptionLbl.ForeColor = System.Drawing.Color.Black;
-            this.OverweightDescriptionLbl.Location = new System.Drawing.Point(94, 99);
+            this.OverweightDescriptionLbl.Location = new System.Drawing.Point(95, 99);
             this.OverweightDescriptionLbl.Margin = new System.Windows.Forms.Padding(1, 0, 1, 1);
             this.OverweightDescriptionLbl.Name = "OverweightDescriptionLbl";
             this.OverweightDescriptionLbl.Size = new System.Drawing.Size(179, 32);
@@ -416,14 +405,14 @@
             this.OverweightLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.OverweightLbl.BackColor = System.Drawing.Color.Khaki;
+            this.OverweightLbl.BackColor = System.Drawing.Color.Azure;
             this.OverweightLbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.OverweightLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OverweightLbl.ForeColor = System.Drawing.Color.Black;
             this.OverweightLbl.Location = new System.Drawing.Point(1, 99);
             this.OverweightLbl.Margin = new System.Windows.Forms.Padding(1, 0, 1, 1);
             this.OverweightLbl.Name = "OverweightLbl";
-            this.OverweightLbl.Size = new System.Drawing.Size(91, 32);
+            this.OverweightLbl.Size = new System.Drawing.Size(92, 32);
             this.OverweightLbl.TabIndex = 2;
             this.OverweightLbl.Text = "Overweight";
             this.OverweightLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -433,14 +422,14 @@
             this.NormalLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.NormalLbl.BackColor = System.Drawing.Color.PaleGreen;
+            this.NormalLbl.BackColor = System.Drawing.Color.Azure;
             this.NormalLbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.NormalLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NormalLbl.ForeColor = System.Drawing.Color.Black;
             this.NormalLbl.Location = new System.Drawing.Point(1, 66);
             this.NormalLbl.Margin = new System.Windows.Forms.Padding(1, 0, 1, 1);
             this.NormalLbl.Name = "NormalLbl";
-            this.NormalLbl.Size = new System.Drawing.Size(91, 32);
+            this.NormalLbl.Size = new System.Drawing.Size(92, 32);
             this.NormalLbl.TabIndex = 1;
             this.NormalLbl.Text = "Normal";
             this.NormalLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -454,7 +443,7 @@
             this.BMIDescriptionLbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.BMIDescriptionLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BMIDescriptionLbl.ForeColor = System.Drawing.Color.White;
-            this.BMIDescriptionLbl.Location = new System.Drawing.Point(94, 0);
+            this.BMIDescriptionLbl.Location = new System.Drawing.Point(95, 0);
             this.BMIDescriptionLbl.Margin = new System.Windows.Forms.Padding(1, 0, 1, 1);
             this.BMIDescriptionLbl.Name = "BMIDescriptionLbl";
             this.BMIDescriptionLbl.Size = new System.Drawing.Size(179, 32);
@@ -467,16 +456,16 @@
             this.NormalDescriptionLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.NormalDescriptionLbl.BackColor = System.Drawing.Color.PaleGreen;
+            this.NormalDescriptionLbl.BackColor = System.Drawing.Color.Azure;
             this.NormalDescriptionLbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.NormalDescriptionLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NormalDescriptionLbl.ForeColor = System.Drawing.Color.Black;
-            this.NormalDescriptionLbl.Location = new System.Drawing.Point(94, 66);
+            this.NormalDescriptionLbl.Location = new System.Drawing.Point(95, 66);
             this.NormalDescriptionLbl.Margin = new System.Windows.Forms.Padding(1, 0, 1, 1);
             this.NormalDescriptionLbl.Name = "NormalDescriptionLbl";
             this.NormalDescriptionLbl.Size = new System.Drawing.Size(179, 32);
             this.NormalDescriptionLbl.TabIndex = 0;
-            this.NormalDescriptionLbl.Text = "between 18.4 and 24.9";
+            this.NormalDescriptionLbl.Text = "between 18.5 and 24.9";
             this.NormalDescriptionLbl.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // UnderweightDescriptionLbl
@@ -484,11 +473,11 @@
             this.UnderweightDescriptionLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.UnderweightDescriptionLbl.BackColor = System.Drawing.Color.Khaki;
+            this.UnderweightDescriptionLbl.BackColor = System.Drawing.Color.Azure;
             this.UnderweightDescriptionLbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.UnderweightDescriptionLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UnderweightDescriptionLbl.ForeColor = System.Drawing.Color.Black;
-            this.UnderweightDescriptionLbl.Location = new System.Drawing.Point(94, 33);
+            this.UnderweightDescriptionLbl.Location = new System.Drawing.Point(95, 33);
             this.UnderweightDescriptionLbl.Margin = new System.Windows.Forms.Padding(1, 0, 1, 1);
             this.UnderweightDescriptionLbl.Name = "UnderweightDescriptionLbl";
             this.UnderweightDescriptionLbl.Size = new System.Drawing.Size(179, 32);
@@ -501,14 +490,14 @@
             this.UnderweightLbl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.UnderweightLbl.BackColor = System.Drawing.Color.Khaki;
+            this.UnderweightLbl.BackColor = System.Drawing.Color.Azure;
             this.UnderweightLbl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.UnderweightLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UnderweightLbl.ForeColor = System.Drawing.Color.Black;
             this.UnderweightLbl.Location = new System.Drawing.Point(1, 33);
             this.UnderweightLbl.Margin = new System.Windows.Forms.Padding(1, 0, 1, 1);
             this.UnderweightLbl.Name = "UnderweightLbl";
-            this.UnderweightLbl.Size = new System.Drawing.Size(91, 32);
+            this.UnderweightLbl.Size = new System.Drawing.Size(92, 32);
             this.UnderweightLbl.TabIndex = 0;
             this.UnderweightLbl.Text = "Underweight";
             this.UnderweightLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -525,7 +514,7 @@
             this.BMIScaleLbl.Location = new System.Drawing.Point(1, 0);
             this.BMIScaleLbl.Margin = new System.Windows.Forms.Padding(1, 0, 1, 1);
             this.BMIScaleLbl.Name = "BMIScaleLbl";
-            this.BMIScaleLbl.Size = new System.Drawing.Size(91, 32);
+            this.BMIScaleLbl.Size = new System.Drawing.Size(92, 32);
             this.BMIScaleLbl.TabIndex = 0;
             this.BMIScaleLbl.Text = "BMI Scale";
             this.BMIScaleLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -561,11 +550,11 @@
             this.CalculateBtn.AutoSize = true;
             this.CalculateBtn.BackColor = System.Drawing.Color.DarkGray;
             this.CalculateBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CalculateBtn.Location = new System.Drawing.Point(38, 386);
+            this.CalculateBtn.Location = new System.Drawing.Point(20, 386);
             this.CalculateBtn.Name = "CalculateBtn";
-            this.CalculateBtn.Size = new System.Drawing.Size(123, 39);
+            this.CalculateBtn.Size = new System.Drawing.Size(171, 39);
             this.CalculateBtn.TabIndex = 5;
-            this.CalculateBtn.Text = "Calculate";
+            this.CalculateBtn.Text = "Calculate BMI";
             this.CalculateBtn.UseVisualStyleBackColor = false;
             this.CalculateBtn.Click += new System.EventHandler(this.CalculateBtn_Click);
             // 
@@ -574,22 +563,13 @@
             this.ResetBtn.AutoSize = true;
             this.ResetBtn.BackColor = System.Drawing.Color.DarkGray;
             this.ResetBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ResetBtn.Location = new System.Drawing.Point(185, 386);
+            this.ResetBtn.Location = new System.Drawing.Point(201, 386);
             this.ResetBtn.Name = "ResetBtn";
             this.ResetBtn.Size = new System.Drawing.Size(81, 39);
             this.ResetBtn.TabIndex = 6;
             this.ResetBtn.Text = "Clear";
             this.ResetBtn.UseVisualStyleBackColor = false;
             this.ResetBtn.Click += new System.EventHandler(this.ResetBtn_Click);
-            // 
-            // CentimetersLbl
-            // 
-            this.CentimetersLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CentimetersLbl.Location = new System.Drawing.Point(251, 106);
-            this.CentimetersLbl.Name = "CentimetersLbl";
-            this.CentimetersLbl.Size = new System.Drawing.Size(47, 45);
-            this.CentimetersLbl.TabIndex = 7;
-            this.CentimetersLbl.Text = "m";
             // 
             // KilogramsLbl
             // 
@@ -618,11 +598,31 @@
             this.PoundLbl.TabIndex = 10;
             this.PoundLbl.Text = "lb";
             // 
+            // CentimetersLbl
+            // 
+            this.CentimetersLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CentimetersLbl.Location = new System.Drawing.Point(251, 106);
+            this.CentimetersLbl.Name = "CentimetersLbl";
+            this.CentimetersLbl.Size = new System.Drawing.Size(47, 45);
+            this.CentimetersLbl.TabIndex = 7;
+            this.CentimetersLbl.Text = "m";
+            // 
+            // ResultTxtBox
+            // 
+            this.ResultTxtBox.BackColor = System.Drawing.Color.White;
+            this.ResultTxtBox.Location = new System.Drawing.Point(12, 12);
+            this.ResultTxtBox.Name = "ResultTxtBox";
+            this.ResultTxtBox.ReadOnly = true;
+            this.ResultTxtBox.Size = new System.Drawing.Size(274, 53);
+            this.ResultTxtBox.TabIndex = 11;
+            this.ResultTxtBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // BMICalculatorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(23F, 46F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(298, 664);
+            this.ClientSize = new System.Drawing.Size(298, 614);
+            this.Controls.Add(this.ResultTxtBox);
             this.Controls.Add(this.KilogramsLbl);
             this.Controls.Add(this.CentimetersLbl);
             this.Controls.Add(this.CalculatorTableLayoutPannel);
@@ -633,7 +633,6 @@
             this.Controls.Add(this.BMIResultTableLayoutPanel);
             this.Controls.Add(this.ImperialBtn);
             this.Controls.Add(this.MetricBtn);
-            this.Controls.Add(this.ResultLbl);
             this.Controls.Add(this.MyWeightLabel);
             this.Controls.Add(this.MyHeightLabel);
             this.Controls.Add(this.PoundLbl);
@@ -643,7 +642,7 @@
             this.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.MaximizeBox = false;
             this.Name = "BMICalculatorForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "BMI Calculator";
             this.Load += new System.EventHandler(this.BMICalculatorForm_Load);
             this.CalculatorTableLayoutPannel.ResumeLayout(false);
@@ -657,7 +656,6 @@
 
         private System.Windows.Forms.Label MyHeightLabel;
         private System.Windows.Forms.Label MyWeightLabel;
-        private System.Windows.Forms.Label ResultLbl;
         private System.Windows.Forms.RadioButton MetricBtn;
         private System.Windows.Forms.RadioButton ImperialBtn;
         private System.Windows.Forms.TableLayoutPanel CalculatorTableLayoutPannel;
@@ -688,10 +686,11 @@
         private System.Windows.Forms.TextBox WeightTxtBox;
         private System.Windows.Forms.Button CalculateBtn;
         private System.Windows.Forms.Button ResetBtn;
-        private System.Windows.Forms.Label CentimetersLbl;
         private System.Windows.Forms.Label KilogramsLbl;
         private System.Windows.Forms.Label FootLbl;
         private System.Windows.Forms.Label PoundLbl;
+        private System.Windows.Forms.Label CentimetersLbl;
+        private System.Windows.Forms.TextBox ResultTxtBox;
     }
 }
 
