@@ -544,6 +544,7 @@
             this.WeightTxtBox.Text = "0.0";
             this.WeightTxtBox.UseWaitCursor = true;
             this.WeightTxtBox.Click += new System.EventHandler(this.WeightTxtBox_Click);
+            this.WeightTxtBox.TextChanged += new System.EventHandler(this.WeightTxtBox_TextChange);
             this.WeightTxtBox.Leave += new System.EventHandler(this.WeightTxtBox_Leave);
             // 
             // CalculateBtn

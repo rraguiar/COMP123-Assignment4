@@ -28,6 +28,7 @@ using System.Windows.Forms;
     - July 18, 2019: Calculations bugs fixed and round decimal done
     - July 19, 2019: Added too much or too few height/weight error handling and value convertion when Unit System changes
     - July 19, 2019: Added interaction with BMI Results table and fixed bugs.
+    - July 19, 2019: Added Splash screen and progress bar
  */
 
 namespace COMP123_Assign4_BMICalculator
@@ -46,7 +47,7 @@ namespace COMP123_Assign4_BMICalculator
             ///Splash screen
             Form startForm = new StartForm();
             startForm.Show();
-            Thread.Sleep(300);
+            Thread.Sleep(3000);
             startForm.Close();
         }
 
@@ -246,10 +247,10 @@ namespace COMP123_Assign4_BMICalculator
             if (MetricBtn.Checked)
             {
                 if (this._HeightInputValue <= 2.80 && this._HeightInputValue >= 0.5)
-                    //Tallest and shortest people ever - approximate numbers
+                //Tallest and shortest people ever - approximate numbers
                 {
                     if (this._WeightInputValue <= 635 && this._WeightInputValue >= 30)
-                        //Heaviest and lighest people ever - approximate numbers
+                    //Heaviest and lighest people ever - approximate numbers
                     {
                         this._BMIResult = this._WeightInputValue / (this._HeightInputValue * this._HeightInputValue);
                         this._BMIResult = Math.Round(this._BMIResult, 1);
@@ -393,6 +394,25 @@ namespace COMP123_Assign4_BMICalculator
             InteractionBMIResults();
             ResultTxtBox.TextAlign = HorizontalAlignment.Right;
             ResultTxtBox.Text = "0.0";
+        }
+
+        private void WeightTxtBox_TextChange(object sender, EventArgs e)
+        {
+            //if (WeightTxtBox.Text != "0.00" && WeightTxtBox.Text != "")
+            //{
+            //    double.TryParse(WeightTxtBox.Text, out double testWeight);
+            //    if (testWeight == 0)
+            //    {
+            //        ErrorDisplay("Weight:");
+
+            //        CalculateBtn.Enabled = false;
+            //    }
+            //    else
+            //    {
+            //        WeightTxtBox.Text = testWeight.ToString("F");
+            //        CalculateBtn.Enabled = true;
+            //    }
+            //}
         }
     }
 }

@@ -24,6 +24,7 @@ using System.Windows.Forms;
     - July 18, 2019: Calculations bugs fixed and round decimal done
     - July 19, 2019: Added too much or too few height/weight error handling and value convertion when Unit System changes
     - July 19, 2019: Added interaction with BMI Results table and fixed bugs.
+    - July 19, 2019: Added Splash screen and progress bar
  */
 
 
